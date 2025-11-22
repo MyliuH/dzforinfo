@@ -1,0 +1,63 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <cstdio>
+#include <locale>
+#include <windows.h>
+
+using namespace std;
+
+struct student{
+    int curs;
+    int age;
+    int marks_count;
+    int* marks;
+    const char* full_name;
+};
+
+student Write() {
+    student s;
+    cout << "\nВведиите курс: ";
+    cin >> s.curs;
+    cout << "\nВведиите возраст: ";
+    cin >> s.age;
+    cout << "\nВведиите количество оценок: ";
+    cin >> s.marks_count;
+    s.marks = new int[s.marks_count];
+    for (int i = 0; i < s.marks_count; i++) {
+        cout << "\nВведите оценку " << i+1 << ":";
+        scanf("%d", &s.marks[i]);
+    }
+    char temp[100];
+    cout << "\nВведите имя: ";
+    scanf("%99s", temp);
+    char* name = new char[strlen(temp) + 1];
+    strcpy(name, temp);
+    s.full_name = name;
+    return s;
+}
+
+void Read(student s) {
+    cout << "\nкурс: " << s.curs;
+    cout << "\nвозраст: " << s.age;
+    cout << "\nколичество оценок: " << s.marks_count;
+    cout << "\nоценки: ";
+    for (int i = 0; i < s.marks_count; i++) {
+        cout << s.marks[i] << " ";
+    }
+    cout << "\nИмя: " << s.full_name;
+}
+
+void deleteStudent(student& s) {
+    delete[] s.marks;           
+    delete[] s.full_name;       
+}
+
+int main()
+{
+    SetConsoleCP(1251);        // Ввод в Windows-1251
+    SetConsoleOutputCP(1251);  // Вывод в Windows-1251
+    setlocale(LC_ALL, "rus");
+    student Sasha = Write();
+    Read(Sasha);
+    deleteStudent(Sasha);
+}
