@@ -1,0 +1,32 @@
+#include <iostream>
+#include <math.h>
+
+int factorial(int el) {
+    int sum = 1;
+    for (int i = 1; i <= el; i++) {
+        sum *= i;
+    }
+    return sum;
+}
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    double myPi = 3.14159265358979323846;
+    double x = myPi / 3;
+    int maxIteration = 10;
+    double Y = sin(x);
+    printf("\nY = %.12lf", Y);
+
+    double S = 0.0f;
+
+    for (int k = 0; k < maxIteration; k++) {
+        double el = pow(-1, k) * pow(x, 2 * k + 1) / factorial(2 * k + 1);
+        S += el;
+    }
+
+    printf("\nS = %.12lf", S);
+    printf("\nАбсолютная погрешность: %.12lf", abs(Y - S));
+    printf("\nОтносительная погрешность: %.12lf", abs(abs(Y - S) / abs(S)));
+
+}
