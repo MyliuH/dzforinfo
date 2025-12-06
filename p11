@@ -1,0 +1,44 @@
+#include <iostream>
+#include <math.h>
+
+
+int factorial(int el) {
+    int sum = 1;
+    for (int i = 1; i <= el; i++) {
+        sum *= i;
+    }
+    return sum;
+}
+
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    int maxIteration = 10;
+
+    double S = 0.0f;
+
+    float a = 0, b = 0, dx = 0;
+
+    printf("\nВведите a = ");
+    std::cin >> a;
+    printf("\nВведите b = ");
+    std::cin >> b;
+    printf("\nВведите dx = ");
+    std::cin >> dx;
+
+    printf("__________________________________\n");
+    printf("|  x   |    sum     |      F     |\n");
+    printf("|______|____________|____________|\n");
+
+    while (a <= b) {
+        float x = a;
+        for (int k = 0; k < maxIteration; k++) {
+            double el = pow(-1, k) * pow(x, 2 * k + 1) / factorial(2 * k + 1);
+            S += el;
+        }
+        printf("| %3.2lf | %1.8lf | %1.8lf |\n", x, S, sin(x));
+        S = 0.0f;
+        a += dx;
+    }
+
+}
