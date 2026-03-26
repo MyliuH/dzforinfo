@@ -13,7 +13,8 @@ int SevenMultiplie(int num) {
 void map(int* A, size_t size, func f) {
 
     for (size_t i = 0; i < size; i++) {
-        std::cout << f(A[i]) << " ";
+        A[i] = f(A[i]);
+        std::cout << (A[i]) << " ";
     }
     std::cout << "\n";
 }
